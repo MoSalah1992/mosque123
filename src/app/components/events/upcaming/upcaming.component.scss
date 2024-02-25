@@ -1,0 +1,105 @@
+@import './src/assets/style/_variables.scss';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
+.container-fluid {
+    // height: 400px;
+
+}
+.carousel-image {
+    width: 200px; /* Set width to 600px */
+    height: 300px; /* Set height to 600px */
+    padding: 5px;
+    object-fit: cover; /* Maintain aspect ratio and cover container */
+  }
+    // height: 527px;
+    // flex-shrink: 0;
+    // // background: linear-gradient(266deg, #1578D4 0%, #4A9CE9 100%);
+    // background: #4A9CE9;
+    // background-image: url('/assets/image/images/home4Background.png');
+    // text-align: center;
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: center;
+    // align-items: center;
+
+
+    
+
+   
+
+
+    .leastFatwaCard {
+        // display: inline-flex;
+        // padding: 40px 30px;
+        // flex-direction: column;
+        // align-items: center;
+        // gap: 30px;
+
+        width: 300px;
+        // height: fit-content;
+        height: 200px;
+        overflow: auto;
+        // padding-left: 30px;
+        // padding-right: 30px;
+        // padding-top: 40px;
+        // padding-bottom: 40px;
+        // background: #262F44;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
+        border-radius: 20px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        // gap: 30px;
+        display: inline-flex;
+
+
+
+        .leastFatwaTitle {
+            text-align: center;
+            color: #EEF4FA;
+            font-size: 15px;
+            font-family: Poppins;
+            font-weight: 500;
+            text-transform: capitalize;
+            line-height: 28px;
+            word-wrap: break-word
+        }
+
+        .leastFatwaBody {
+            width: 788px;
+            text-align: center;
+            color: #C6D0E0;
+            font-size: 14px;
+            font-family: Poppins;
+            font-weight: 400;
+            line-height: 20px;
+            word-wrap: break-word;
+            display: inline;
+            
+        }
+
+    }
+
+    .cards {
+        display: flex;
+        max-width: calc(100vw - 25px) ;
+        padding: 25px 0px;
+        list-style: none;
+        overflow-x: scroll;
+        -ms-scroll-snap-type: x mandatory;
+        scroll-snap-type: x mandatory;
+
+       
+    }
+
+
+    .image-container {
+       
+        background-position: center;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }

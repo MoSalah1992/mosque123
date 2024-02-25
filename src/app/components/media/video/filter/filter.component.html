@@ -1,0 +1,148 @@
+<app-main-banner [imageURL]="'/assets/image/slider/video.png'" [imageName]="'Video'"></app-main-banner>
+
+<div class="container-fluid p-5">
+    <div class="row">
+      <!-- Fixed Left Side Filter -->
+      <div class="col-md-3">
+        <div class="card" style="height: 100%;background-color: rgba(255, 253, 253, 0.229)">
+          <div class="card-header d-flex flex-row justify-content-between ">
+            <h5>Filters</h5>
+            <div>
+              <!-- <button type="button" class="btn btn-primary mx-1" (click)="filterFind()">Find</button> -->
+            <button type="button" class="btn btn-primary mx-1" (click)="clearFind()">Clear</button>
+            </div>
+          </div>
+          <div class="card-body flex p-4">
+            <!-- Type Filter -->
+            <div class="mb-3">
+              <h6>Type</h6>
+                <div class="form-check" *ngFor="let type of mediaType">
+                  <input class="form-check-input" type="radio" [value]="type" id="typeFilter1" (change)="handleMediatypeChange($event,type)" [checked]="type === selectedMediaType">
+                  <label class="form-check-label" for="typeFilter1">
+                    {{type.name_En}}
+                  </label>
+                </div>
+              
+              <!-- Add more items as needed -->
+            </div>
+  
+            <!-- Name of the Lecturer Filter -->
+            <div class="mb-3">
+              <h6>Name of the Lecturer</h6>
+              <div class="form-check" *ngFor="let lecturer of lecturers">
+                <input class="form-check-input" type="radio" value="" id="typeFilter1" (change)="handleLecturersChange($event,lecturer)" [checked]="lecturer === selectedLecturers">
+                <label class="form-check-label" for="typeFilter1">
+                  {{lecturer.name_En}}
+                </label>
+              </div>
+              
+              <!-- Add more items as needed -->
+            </div>
+  
+            <!-- Threads Filter -->
+            <div class="mb-3">
+              <h6>Threads</h6>
+              <div class="form-check" *ngFor="let thread of threads">
+                <input class="form-check-input" type="radio" value="" id="typeFilter1" (change)="handlethreadsChange($event,thread)" [checked]="thread === selectedThreads">
+                <label class="form-check-label" for="typeFilter1">
+                  {{thread.name_En}}
+                </label>
+              </div>
+              <!-- Add more items as needed -->
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Right Section - Video Cards -->
+      <div class="col-md-9">
+       <!-- Search Box -->
+       <div class="d-flex justify-content-center align-items-center font-bold border-round m-2">
+        <div class="input-group" style="max-width: 500px;">
+            <input class="form-control border-end-0 border rounded-pill" [(ngModel)]="searchBox" type="search" placeholder="Search"
+                id="" (input)="onSearch()">
+            <span class="input-group-append">
+                <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill"
+                    type="button" (click)="searchClick()">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+
+      <!-- Filter Buttons -->
+      <div class="d-flex justify-content-center align-items-center font-bold border-round m-2" id="buttonGroup">
+        <button type="button" class="btn rounded-pill m-2"
+                [ngClass]="selectedButton === 'Newest' ? 'btn-primary' : 'btn-secondary'"
+                (click)="selectButton('Newest')">Newest</button>
+        <button type="button" class="btn rounded-pill m-2"
+                [ngClass]="selectedButton === 'Views' ? 'btn-primary' : 'btn-secondary'"
+                (click)="selectButton('Views')">Views</button>
+        <button type="button" class="btn rounded-pill m-2"
+                [ngClass]="selectedButton === 'Popular' ? 'btn-primary' : 'btn-secondary'"
+                (click)="selectButton('Popular')">Popular</button>
+        <button type="button" class="btn rounded-pill m-2"
+                [ngClass]="selectedButton === 'A-Z' ? 'btn-primary' : 'btn-secondary'"
+                (click)="selectButton('A-Z')">A-Z</button>
+      </div>
+      
+        <!-- Video Cards -->
+        <div *ngIf="pagedVideoList.length>0" class="d-flex flex-column align-items-start font-bold border-round m-2">
+        
+          
+          <div class="row w-100" >
+       
+            <div  class="col-lg-3 col-md-6 col-sm-12 mb-3" *ngFor="let video of pagedVideoList">
+        
+              <div class="card h-100 border-0 bg-transparent">
+                <div class="embed-responsive embed-responsive-16by9">
+                  <video class="card-img-top embed-responsive-item"   controls  style="border-radius: 60px 15px; box-shadow: 0px 4px 10px 0px rgba(21, 120, 212, 0.10);">
+                    <source  [src]="sanitize(video.path)" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                  <!-- <iframe class="card-img-top embed-responsive-item"
+                          style="border-radius: 60px 15px; box-shadow: 0px 4px 10px 0px rgba(21, 120, 212, 0.10);"
+                          [src]="sanitize(video.path)"></iframe> -->
+                </div>
+        
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title">{{ video.title_En }}</h5>
+                  <p class="card-text flex-grow-1">{{ video.description_En }}</p>
+                  <a [routerLink]="['/media/video/player']" [state]="{videoId: video.id}" class="btn btn-primary mt-auto">See More
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M15.7912 5.81803L11.7911 9.5954C11.3694 9.99359 10.6667 9.69837 10.6667 9.11073V7.11176C6.65069 7.1387 4.9565 8.08712 6.08958 11.8716C6.21411 12.2875 5.73275 12.6095 5.39497 12.3529C4.31256 11.5307 3.33333 9.95803 3.33333 8.37056C3.33333 4.37231 6.59997 3.57889 10.6667 3.55634V1.55592C10.6667 0.967756 11.3699 0.673478 11.7911 1.07126L15.7912 4.8487C16.0695 5.11156 16.0697 5.55495 15.7912 5.81803ZM10.6667 11.4203V13.3334H1.77778V4.44448H3.19211C3.237 4.44445 3.28142 4.43535 3.3227 4.41772C3.36398 4.40009 3.40127 4.3743 3.43233 4.34189C3.84769 3.90945 4.32781 3.56717 4.84939 3.29534C5.15856 3.1342 5.044 2.6667 4.69536 2.6667H1.33333C0.596944 2.6667 0 3.26364 0 4.00003V13.7778C0 14.5142 0.596944 15.1111 1.33333 15.1111H11.1111C11.8475 15.1111 12.4444 14.5142 12.4444 13.7778V11.311C12.4444 11.0808 12.2168 10.9203 11.9997 10.997C11.6954 11.1047 11.3695 11.1368 11.05 11.0908C10.8481 11.0618 10.6667 11.2162 10.6667 11.4203Z" fill="#F1F8FF"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        
+      
+        <div *ngIf="pagedVideoList.length==0" class="d-flex  align-items-center justify-content-center  " style="padding: 100px;">
+          <img class="d-flex   w-2"  src="/assets/image/images/noData.jpg" alt=""   style="width: 100%;">
+      </div>
+        <!-- Image by <a href="https://www.freepik.com/free-vector/flat-design-no-data-illustration_47718912.htm#query=no%20data%20found&position=1&from_view=search&track=ais&uuid=489ff144-1a5b-4754-af3e-de15179025f4">Freepik</a> -->
+  
+        <!-- Pagination -->
+        <div class="d-flex justify-content-center align-items-center font-bold border-round m-2">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item" [class.disabled]="currentPage === 1">
+                <a class="page-link" tabindex="-1" aria-disabled="true" (click)="prevPage()">Previous</a>
+              </li>
+              <li class="page-item" *ngFor="let page of pages" [class.active]="page === currentPage">
+                <a class="page-link" (click)="setPage(page)">{{ page }}</a>
+              </li>
+              <li class="page-item" [class.disabled]="currentPage === totalPages">
+                <a class="page-link" (click)="nextPage()">Next</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  

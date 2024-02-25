@@ -1,0 +1,33 @@
+@import './src/assets/style/variables.scss';
+
+// .container-fluid{
+//   padding: 0px;
+// }
+
+.headerTop{
+    // z-index: 3;
+}
+.navbar{
+    background-color: $header-color;
+    height: 50px;
+}
+
+.headerBody{
+    position: absolute;
+    top:50px;
+    /* Group 53 */
+
+// width: 1440px;
+// height: 50px;
+
+/* drop/3 */
+
+/* Nature/3 */
+background: #262f44f2;
+border-radius: 0px 0px 30px 30px;
+
+.nav-link{
+    color: white;
+
+}
+}

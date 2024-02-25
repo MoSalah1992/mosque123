@@ -1,0 +1,50 @@
+<app-main-banner [imageURL]="'/assets/image/slider/video2.png'" [imageName]="'Video'"></app-main-banner>
+
+<div class="container-fluid p-5">
+  <div class="d-flex flex-column align-items-center justify-content-center  ">
+
+
+    <!-- <div class="d-flex align-items-center justify-content-center m-2  "
+      style="width: 1030px;height: 579px; border: solid 1px rgb(151, 150, 150);border-radius: 25px; box-shadow: 0px 0px 10px 0px #a2a2a2;">
+      <h3>Video </h3>
+      
+    </div> -->
+
+    <video *ngIf="videoList.path" class="d-flex align-items-center justify-content-center m-2  " controls
+    style="width: 1030px;height: 579px; border: solid 1px rgb(151, 150, 150);border-radius: 25px; box-shadow: 0px 0px 10px 0px #a2a2a2;">
+    <source  [src]="sanitize(videoList.path)" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="d-flex flex-column m-2  px-5" style="width: 1030px; ">
+      <div class="d-flex flex-row w-100   align-items-start justify-content-between m-2">
+
+        <p>Mohamed Ali </p>
+        <div class="d-flex flex-row ">
+          <!-- <p class="px-2">Like icon </p> -->
+          <!-- <p class="px-2">see icon </p> -->
+          <p  class="eye-number">{{videoList.views?videoList.views:'0'}}
+             <fa-icon class="eye-icon"
+            [icon]="faEye">
+          </fa-icon>
+        </div>
+
+      </div>
+
+      <div class="d-flex flex-column w-100   align-items-start justify-content-between m-2">
+
+        <h3>{{videoList.title_En}}</h3>
+        <p>
+          {{videoList.description_En}}
+        </p>
+      
+
+      </div>
+
+
+
+    </div>
+
+
+  </div>
+</div>

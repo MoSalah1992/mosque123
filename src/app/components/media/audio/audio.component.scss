@@ -1,0 +1,53 @@
+/* video-page.component.css */
+.container-fluid {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    // height: 2012px;
+   
+    
+ 
+    
+    .card-body {
+      flex: 1;
+    }
+    
+    .card-wrapper {
+      display: flex;
+      height: 100%;
+    }
+    .card {
+      border-radius: 10px;
+      background: var(--Nature-8, #d3d7dd);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      .card-title {
+        color: var(--nature-nature-5, #0D1822);
+        /* Header/15 */
+        font-family: Poppins;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 28px;
+        /* 186.667% */
+        text-transform: capitalize;
+      }
+      .card-text{
+        color: var(--nature-nature-3, #536576);
+  
+  /* body/12 */
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 166.667% */
+      }
+    }
+  
+  }
+  
+
+  
+  
+  
+  

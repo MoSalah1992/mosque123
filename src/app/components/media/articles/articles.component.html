@@ -1,0 +1,101 @@
+<app-main-banner [imageURL]="'/assets/image/slider/articles.png'" [imageName]="'Article'"></app-main-banner>
+
+<div class="container-fluid ">
+
+  <div class="row ">
+    <div class="col-md-12 w">
+           <!-- Search Box -->
+           <div class="d-flex justify-content-center align-items-center font-bold border-round m-2 ">
+            <div class="input-group" style="max-width: 500px;">
+                <input class="form-control border-end-0 border rounded-pill" style="width: 400px;" [(ngModel)]="searchBox" type="search" placeholder="Search"
+                    id="" (input)="onSearch()">
+                <span class="input-group-append">
+                    <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill"
+                        type="button" (click)="searchClick()">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+
+
+        <!-- Filter Buttons -->
+        <div class="d-flex justify-content-center align-items-center font-bold border-round m-2" id="buttonGroup">
+          <button type="button" class="btn rounded-pill m-2"
+            [ngClass]="selectedButton === 'Newest' ? 'btn-primary' : 'btn-secondary'"
+            (click)="selectButton('Newest')">Newest</button>
+          <button type="button" class="btn rounded-pill m-2"
+            [ngClass]="selectedButton === 'Views' ? 'btn-primary' : 'btn-secondary'"
+            (click)="selectButton('Views')">Views</button>
+          <button type="button" class="btn rounded-pill m-2"
+            [ngClass]="selectedButton === 'Popular' ? 'btn-primary' : 'btn-secondary'"
+            (click)="selectButton('Popular')">Popular</button>
+          <button type="button" class="btn rounded-pill m-2"
+            [ngClass]="selectedButton === 'A-Z' ? 'btn-primary' : 'btn-secondary'"
+            (click)="selectButton('A-Z')">A-Z</button>
+        </div>
+
+
+
+      <div class="row">
+        <div class="col-3 DivRow"
+          *ngFor="let articles of allArticles | paginate: { id: 'Article', itemsPerPage: 20, currentPage: page, totalItems: total }">
+          <div class="card h-100">
+            <div class="card-img-top img-container">
+              <img class="img-fluid" [src]="articles.bannerUrl" alt="image">
+            </div>
+            <div class="card-body d-flex flex-column justify-content-between">
+              <h5 class="card-title">{{ articles.title_En }}</h5>
+              <p class="card-text">{{ articles.description_En }}</p>
+              <div class="mt-auto d-flex justify-content-between"> <!-- Aligns items to the bottom of the card -->
+                <button type="button" class="btn btn-seemore btn-primary" data-bs-toggle="modal"
+                  data-bs-target="#descriptionModal" (click)="fullDescription(articles)">See More</button>
+                <button class="Second-btn">{{ articles.author }}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+
+        <!-- <tr *ngFor="let item of ArrayOfFormArticle|paginate: { id: 'Article',
+  itemsPerPage: 6,
+  currentPage: page,
+  totalItems: total }" ></tr> -->
+      </div>
+      <div class="d-flex justify-content-center HandMadepagination-controls ">
+        <!-- <button routerLinkActive="btn-primary" class="btn  m-2">{{page}}</button>
+  <button routerLinkActive="btn-primary" class="btn  m-2">{{page+1}}</button> -->
+        <pagination-controls (pageChange)="changePage($event)" id="Article"></pagination-controls>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<!--  Modal -->
+
+<div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModalTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" id="exampleModalLongTitle" [innerHTML]="fullDescriptionSelected.title_En">
+          <!-- {{fullDescriptionSelected.title_En}} -->
+        </div>
+
+      </div>
+      <div class="modal-body" [innerHTML]="fullDescriptionSelected.contents_En">
+        <!-- {{ fullDescriptionSelected.contents_En }} -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+          (click)="handleCloseArticale(fullDescriptionSelected)">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

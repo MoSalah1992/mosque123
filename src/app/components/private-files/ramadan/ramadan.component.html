@@ -1,0 +1,46 @@
+<app-main-banner [imageURL]="'/assets/image/slider/ramadan.png'" [imageName]="filesList.title_En"></app-main-banner>
+
+<div class="container-fluid d-flex flex-column  ">
+    <div class="d-flex">
+        <div class="d-flex flex-row gap-2 p-5">
+            <!-- <div class="banarTop" [ngStyle]="{ 'background-image': 'url(' + file.bannerUrl1 + ')' }"></div> -->
+            <div class="bannerTop" [ngStyle]="{ 'background': 'url(' + filesList.bannerUrl1 + ') #C6D0E0' }" (click)="openBanner(filesList.bannerGo_1)"></div>
+
+            <div class="bannerTop" [ngStyle]="{ 'background': 'url(' + filesList.bannerUrl1 + ') #C6D0E0' }" (click)="openBanner(filesList.bannerGo_2)"></div>
+
+        </div>
+    </div>
+    <div class="d-flex flex-row align-items-center justify-content-center  gap-5 p-5">
+        <div class=" d-flex flex-column align-items-start w-25   gap-3">
+            <div class="bannerLeft" [ngStyle]="{ 'background': 'url(' + filesList.bannerUrl3 + ') #C6D0E0' }" (click)="openBanner(filesList.bannerGo_3)"></div>
+            
+            <div class="bannerLeft" [ngStyle]="{ 'background': 'url(' + filesList.bannerUrl4 + ') #C6D0E0' }" (click)="openBanner(filesList.bannerGo_4)"></div>
+
+            <div class="bannerLeft" [ngStyle]="{ 'background': 'url(' + filesList.bannerUrl5 + ') #C6D0E0' }" (click)="openBanner(filesList.bannerGo_5)"></div>
+
+            <div class="bannerLeft" [ngStyle]="{ 'background': 'url(' + filesList.bannerUrl6 + ') #C6D0E0' }" (click)="openBanner(filesList.bannerGo_6)"></div>
+
+            <div class="bannerLeft" [ngStyle]="{ 'background': 'url(' + filesList.bannerUrl7 + ') #C6D0E0' }" (click)="openBanner(filesList.bannerGo_7)"></div>
+
+        </div>
+        <div class="row d-flex flex-column align-items-center justify-content-center  w-50">
+            <div
+                style="width: 450px; height: 400px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 30px; display: inline-flex">
+
+
+                <div class="containerCard" *ngFor="let item of cardList">
+                    <div class="containerTitle" [routerLink]="'media/'+item.rout">{{item.name}}</div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class=" d-flex flex-column  justify-content-end w-25 gap-3">
+            <div class="bannerRight" [ngStyle]="{ 'background': 'url(' + filesList.bannerUrl8 + ') #C6D0E0' }" (click)="openBanner(filesList.bannerGo_8)"></div>
+            <div class="bannerRight" [ngStyle]="{ 'background': 'url(' + filesList.bannerUrl9 + ') #C6D0E0' }" (click)="openBanner(filesList.bannerGo_9)"></div>
+
+        </div>
+    </div>
+
+
+</div>

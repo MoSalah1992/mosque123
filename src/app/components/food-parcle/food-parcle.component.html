@@ -1,0 +1,220 @@
+<app-main-banner [imageURL]="'/assets/image/slider/FoodParcle.png'" [imageName]="'Food Parcle'"></app-main-banner>
+
+<div class="container-fluid p-5">
+    <div class="d-flex flex-column align-items-center justify-content-center gap-2 mb-5">
+        <div class="d-flex justify-content-center align-items-center font-bold border-round m-2" id="buttonGroup">
+            <button type="button" class="btn rounded-pill m-2"
+                [ngClass]="selectedButton === 'DonateFood' ? 'btn-primary' : 'btn-secondary'"
+                (click)="selectButton('DonateFood')">Donate Food</button>
+            <button type="button" class="btn rounded-pill m-2"
+                [ngClass]="selectedButton === 'NeedFood' ? 'btn-primary' : 'btn-secondary'"
+                (click)="selectButton('NeedFood')">Need Food</button>
+
+        </div>
+        <div *ngIf="selectedButton == 'DonateFood'">
+
+            <form style="width: 500px;" (ngSubmit)="submitFormDonateFood()">
+
+                <!-- User Name -->
+
+                <div class="form-group m-2 form-outline">
+
+                    <input [(ngModel)]="formDonateFood.userName" type="text" class="form-control dropDownList"
+                        placeholder=" Name" required>
+
+
+                </div>
+                <!-- Phone -->
+
+                <div class="d-flex flex-row m-2 gap-2">
+                    <div
+                        class="form-group d-flex flex-row flex-wrap align-items-center justify-content-center dropDownList">
+
+                        <ngx-intl-tel-input [(ngModel)]="formDonateFood.phone1" class="" style=""
+                            [cssClass]="'custom form-control dropDownList'"
+                            [preferredCountries]="[CountryISO.UnitedStates, CountryISO.UnitedKingdom]"
+                            [enableAutoCountrySelect]="false" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                            [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                            [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.UnitedStates"
+                            [maxLength]="'15'" [phoneValidation]="true" [inputId]="'my-input-id'"
+                            name="phone"></ngx-intl-tel-input>
+                    </div>
+
+                    <div
+                        class="form-group d-flex flex-row flex-wrap align-items-center justify-content-center dropDownList">
+
+                        <ngx-intl-tel-input [(ngModel)]="formDonateFood.phone2" class="" style=""
+                            [cssClass]="'custom form-control dropDownList'"
+                            [preferredCountries]="[CountryISO.UnitedStates, CountryISO.UnitedKingdom]"
+                            [enableAutoCountrySelect]="false" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                            [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                            [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.UnitedStates"
+                            [maxLength]="'15'" [phoneValidation]="true" [inputId]="'my-input-id'"
+                            name="phone"></ngx-intl-tel-input>
+                    </div>
+                </div>
+
+                <!-- Location -->
+                <div class="form-group m-2">
+
+                    <input [(ngModel)]="formDonateFood.Location" type="text" class="form-control dropDownList"
+                        placeholder="Location" required>
+                </div>
+
+                <!-- Date of Donate -->
+                <div class="form-group m-2">
+
+                    <input [(ngModel)]="formDonateFood.DateDonate" type="text" class="form-control dropDownList"
+                        placeholder="Date of Donate" required>
+                </div>
+
+                <div *ngFor="let item of formDonateFood.meals">
+                    <div class="border-bottom  my-3" style="border: 1px solid rgb(130, 130, 130);"></div>
+
+                    <div class="d-flex flex-row m-2 gap-3">
+                        <div class="flex-grow-1">
+                            <div class="m-2">
+                                <select class="form-control dropDownList" [(ngModel)]="item.selectedMeals" required>
+                                    <option disabled value="" selected>Kind of Food (meals)</option>
+                                    <option *ngFor="let meal of mealOptions" [value]="meal.id">{{meal.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="">
+                            <button type="button" class="btn  m-2 btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#descriptionModal">Add new meal</button>
+                        </div>
+                    </div>
+
+                    <!-- Count of meals -->
+                    <div class="form-group m-2">
+
+                        <input  [(ngModel)]="item.count" type="text"
+                            class="form-control dropDownList" placeholder="Count of meals" required>
+                    </div>
+
+                </div>
+                <!-- Count of meals -->
+                <div class="form-group m-2 d-flex flex-column align-items-center justify-content-center">
+
+                    <button type="button" class="btn  m-2 btn-primary" style="width: 450px;"
+                        (click)="addOtherMeal()">Add other meal</button>
+                </div>
+                <div class="border-bottom  my-3" style="border: 1px solid rgb(130, 130, 130);"></div>
+
+                <!-- Add any comments -->
+                <div class="form-group m-2">
+
+                    <textarea [(ngModel)]="formDonateFood.comment" placeholder="Add any comments" class="form-control"
+                        id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+
+
+                <!-- Submit Button -->
+                <div class="form-group m-2 d-flex flex-column align-items-center justify-content-center">
+                    <button type="submit" style="width: 450px;"
+                        class="btn btn-primary align-items-center justify-content-center dropDownList"
+                        >Submit</button>
+                </div>
+
+
+
+            </form>
+        </div>
+
+        <div *ngIf="selectedButton == 'NeedFood'">
+            <div style="width: 500px;">
+
+                <!-- User Name -->
+
+                <div class="form-group m-2 form-outline">
+
+                    <input [(ngModel)]="formNeedFood.userName" type="text" class="form-control dropDownList"
+                        placeholder=" Name" required>
+
+
+                </div>
+                <!-- Phone -->
+
+                <div class="d-flex flex-row m-2 gap-2">
+                    <div
+                        class="form-group d-flex flex-row flex-wrap align-items-center justify-content-center dropDownList">
+
+                        <ngx-intl-tel-input [(ngModel)]="formNeedFood.phone1" class="" style=""
+                            [cssClass]="'custom form-control dropDownList'"
+                            [preferredCountries]="[CountryISO.UnitedStates, CountryISO.UnitedKingdom]"
+                            [enableAutoCountrySelect]="false" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                            [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                            [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.UnitedStates"
+                            [maxLength]="'15'" [phoneValidation]="true" [inputId]="'my-input-id'"
+                            name="phone"></ngx-intl-tel-input>
+                    </div>
+
+                    <div
+                        class="form-group d-flex flex-row flex-wrap align-items-center justify-content-center dropDownList">
+
+                        <ngx-intl-tel-input [(ngModel)]="formNeedFood.phone2" class="" style=""
+                            [cssClass]="'custom form-control dropDownList'"
+                            [preferredCountries]="[CountryISO.UnitedStates, CountryISO.UnitedKingdom]"
+                            [enableAutoCountrySelect]="false" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                            [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                            [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.UnitedStates"
+                            [maxLength]="'15'" [phoneValidation]="true" [inputId]="'my-input-id'"
+                            name="phone"></ngx-intl-tel-input>
+                    </div>
+                </div>
+
+                <!-- Location -->
+                <div class="form-group m-2">
+
+                    <input [(ngModel)]="formNeedFood.Location" type="text" class="form-control dropDownList"
+                        placeholder="Location">
+                </div>
+
+                <div class="border-bottom  my-3" style="border: 1px solid rgb(130, 130, 130);"></div>
+
+                <!-- Add any comments -->
+                <div class="form-group m-2">
+
+                    <textarea [(ngModel)]="formNeedFood.comment" placeholder="Add any comments" class="form-control"
+                        id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+
+
+                <!-- Submit Button -->
+                <div class="form-group m-2 d-flex flex-column align-items-center justify-content-center">
+                    <button type="submit" style="width: 450px;"
+                        class="btn btn-primary align-items-center justify-content-center dropDownList"
+                        (click)="submitFormNeedFood()">Submit</button>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!--  Modal -->
+addNewMeal
+<div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">New Meals</h5>
+
+            </div>
+            <div class="modal-body">
+                <input [(ngModel)]="newMealDetails" type="text" class="form-control dropDownList"
+                    placeholder="Meal Datails">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                    (click)="handleSave()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

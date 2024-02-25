@@ -1,0 +1,32 @@
+@import './src/assets/style/variables.scss';
+
+
+.footerContainer1 {
+
+    background-color: $footer-color;
+    color: white;
+    // flex-shrink: 0;
+    position: relative;
+    // top: -50px;
+    box-shadow: 0px 0px 10px 0px #949494;
+
+    .text-muted {
+        color: white !important;
+
+    }
+
+
+}
+
+.footerContainer2 {
+    background-color: $footer-color-secondary;
+    color: white;
+
+
+    .text-muted {
+        color: white !important;
+
+    }
+
+
+}

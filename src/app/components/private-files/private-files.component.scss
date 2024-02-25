@@ -1,0 +1,70 @@
+/* video-page.component.css */
+.container-fluid {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 800px;
+
+    // height: 2012px;
+
+    .card {
+        // display: flex;
+        // padding: 3px;
+        // flex-direction: column;
+        // align-items: flex-start;
+        // gap: 15px;
+        // border-radius: 15px;
+        // border: 1px solid var(--blue-blue-3, #1578D4);
+
+        width: 250px;
+            height: 153px;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            // background: linear-gradient(0deg, #E0E6EE 0%, #E0E6EE 100%);
+            border-radius: 15px;
+            border: 1px #1578D4 solid;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 15px;
+            display: inline-flex;
+            border-radius: 15px;
+            opacity: 0.5;
+            background-size: cover; background-position: center;
+        // background: url(/assets/image/flag/flag1.jpg), lightgray 50% / cover no-repeat, #E0E6EE;    
+        .card-title {
+            color: var(--Nature-2, #13182B);
+            /* Header/20 */
+            font-family: Poppins;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 28px;
+            /* 140% */
+            text-transform: uppercase;
+            opacity: 1;
+        }
+
+        .card-text {
+            color: var(--Nature-3, #262F44);
+
+            /* body/12 */
+            font-family: Poppins;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px;
+            /* 166.667% */
+        }
+
+        .card-img{
+
+            border-radius: 15px;
+            opacity: 0.5;
+            background-size: cover; background-position: center;
+        }
+    }
+
+}
+

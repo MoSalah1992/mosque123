@@ -1,0 +1,11 @@
+@import './src/assets/style/_variables.scss';
+
+.container-fluid{
+    height: 1104px;
+    background-color: $primary-color;
+    background-image: url('/assets/image/images/home4Background.png');
+    // background-color: #f0f0f0; /* Replace '#f0f0f0' with the desired color */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}

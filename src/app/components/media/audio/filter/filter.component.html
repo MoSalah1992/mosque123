@@ -1,0 +1,152 @@
+<app-main-banner [imageURL]="'/assets/image/slider/audio.png'" [imageName]="'Audio'"></app-main-banner>
+
+
+<!-- audio-page.component.html -->
+<div class="container-fluid py-5">
+  <div class="row ">
+    <!-- Fixed Left Side Filter -->
+    <div class="col-md-3">
+      <div class="card" style="height: 100%;background-color: rgba(255, 253, 253, 0.229)">
+        <div class="card-header d-flex flex-row justify-content-between ">
+          <h5>Filters</h5>
+          <div>
+            <!-- <button type="button" class="btn btn-primary mx-1" (click)="filterFind()">Find</button> -->
+            <button type="button" class="btn btn-primary mx-1" (click)="clearFind()">Clear</button>
+          </div>
+        </div>
+        <div class="card-body flex p-4">
+          <!-- Type Filter -->
+          <div class="mb-3">
+            <h6>Type</h6>
+            <div class="form-check" *ngFor="let type of mediaType">
+              <input class="form-check-input" type="radio" [value]="type" id="typeFilter1"
+                (change)="handleMediatypeChange($event,type)" [checked]="type === selectedMediaType">
+              <label class="form-check-label" for="typeFilter1">
+                {{type.name_En}}
+              </label>
+            </div>
+
+            <!-- Add more items as needed -->
+          </div>
+
+          <!-- Name of the Lecturer Filter -->
+          <div class="mb-3">
+            <h6>Name of the Lecturer</h6>
+            <div class="form-check" *ngFor="let lecturer of lecturers">
+              <input class="form-check-input" type="radio" value="" id="typeFilter1"
+                (change)="handleLecturersChange($event,lecturer)" [checked]="lecturer === selectedLecturers">
+              <label class="form-check-label" for="typeFilter1">
+                {{lecturer.name_En}}
+              </label>
+            </div>
+
+            <!-- Add more items as needed -->
+          </div>
+
+          <!-- Threads Filter -->
+          <div class="mb-3">
+            <h6>Threads</h6>
+            <div class="form-check" *ngFor="let thread of threads">
+              <input class="form-check-input" type="radio" value="" id="typeFilter1"
+                (change)="handlethreadsChange($event,thread)" [checked]="thread === selectedThreads">
+              <label class="form-check-label" for="typeFilter1">
+                {{thread.name_En}}
+              </label>
+            </div>
+            <!-- Add more items as needed -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Section - Audios Cards -->
+    <div class="col-lg-9 col-md-12 col-sm-12">
+
+
+      <!-- Search Box -->
+      <div class="d-flex justify-content-center align-items-center font-bold border-round m-2">
+        <div class="input-group" style="max-width: 500px;">
+          <input class="form-control border-end-0 border rounded-pill" [(ngModel)]="searchBox" type="search"
+            placeholder="Search" id="" (input)="onSearch()">
+          <span class="input-group-append">
+            <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill" type="button"
+              (click)="searchClick()">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="d-flex justify-content-center align-items-center font-bold border-round m-2" id="buttonGroup">
+        <button type="button" class="btn rounded-pill m-2"
+          [ngClass]="selectedButton === 'Newest' ? 'btn-primary' : 'btn-secondary'"
+          (click)="selectButton('Newest')">Newest</button>
+        <button type="button" class="btn rounded-pill m-2"
+          [ngClass]="selectedButton === 'Views' ? 'btn-primary' : 'btn-secondary'"
+          (click)="selectButton('Views')">Views</button>
+        <button type="button" class="btn rounded-pill m-2"
+          [ngClass]="selectedButton === 'Popular' ? 'btn-primary' : 'btn-secondary'"
+          (click)="selectButton('Popular')">Popular</button>
+        <button type="button" class="btn rounded-pill m-2"
+          [ngClass]="selectedButton === 'A-Z' ? 'btn-primary' : 'btn-secondary'"
+          (click)="selectButton('A-Z')">A-Z</button>
+      </div>
+
+      <div *ngIf="pagedAudioList.length>0"
+        class="flex align-items-center justify-content-center font-bold border-round m-2">
+        <div class="row">
+          <!-- Loop through 10 audio cards -->
+          <div *ngFor="let audio of pagedAudioList" class="col-lg-4 col-md-6 col-sm-12 mb-3 ">
+            <div class="card" style="background-color: rgba(255, 253, 253, 0.297)">
+              <div class="card-body d-flex flex-column stify-content-between flex-wrap">
+                <div class="card-body d-flex justify-content-between p-0 ">
+                  <h5 class="card-title">{{ audio.title_En }}</h5>
+                  <img style="width: 32px; height: 32px" src="/assets/image/icon/Audio.png" alt="">
+
+                </div>
+
+                <p class="card-text">{{ audio.description_En }}</p>
+                <!-- Add more details as needed -->
+
+                <!-- See More Button -->
+                <button class="btn btn-primary btn-sm" (click)="playAudio(audio.path)">listen now</button>
+                <audio #audioPlayer controls style="display: none;">
+                  <source #audioSource src="" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div *ngIf="pagedAudioList.length==0" class="d-flex  align-items-center justify-content-center  "
+        style="padding: 100px;">
+        <img class="d-flex   w-2" src="/assets/image/images/noData.jpg" alt="" style="width: 100%;">
+      </div>
+      <div class="flex align-items-center justify-content-center  font-bold border-round m-2">
+        <!-- Pagination -->
+        <div class="d-flex justify-content-center align-items-center mb-3">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item" [class.disabled]="currentPage === 1">
+                <a class="page-link" tabindex="-1" aria-disabled="true" (click)="prevPage()">Previous</a>
+              </li>
+              <li class="page-item" *ngFor="let page of pages" [class.active]="page === currentPage">
+                <a class="page-link" (click)="setPage(page)">{{ page }}</a>
+              </li>
+              <li class="page-item" [class.disabled]="currentPage === totalPages">
+                <a class="page-link" (click)="nextPage()">Next</a>
+              </li>
+            </ul>
+          </nav>
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

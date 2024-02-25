@@ -1,0 +1,40 @@
+.w-40{
+    width: 40%;
+  }
+  .w-90{
+    width: 90%;
+  }
+  .Gray-btn:hover
+  {
+    background: var(--Nature-6, #0345d3);
+  
+  }
+  .HandColor{
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px; /* 140% */
+  padding: 5px 20px;
+  
+  background-color: #3B4459;
+  gap: 10px;
+  
+  }
+  .btn-seemore
+  {
+  display: flex;
+  padding: 0px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  background: linear-gradient(83deg, #4A9CE9 0%, #1578D4 100%);
+  border-color: transparent;
+  }
+  .Second-btn
+  {
+    border-radius: 0%;
+    border-color: transparent;
+    background-color: transparent;
+  }
+  

@@ -1,0 +1,36 @@
+/* video-page.component.css */
+.container-fluid {
+    // height: 800px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    // height: 2012px;
+
+    .containerCard {
+        // background-color: #E818D39C;
+        display: flex;
+        padding: 10px 20px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        align-self: stretch;
+        border-radius: 33px;
+        background: var(--Nature-4, #E818D39C);
+        cursor: pointer;
+
+    }
+
+    .containerTitle {
+        color: var(--Nature-10, #F6F8FC);
+
+        /* Header/28 */
+        font-family: Poppins;
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 36px;
+        /* 128.571% */
+    }
+
+
+
+}

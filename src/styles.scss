@@ -1,0 +1,65 @@
+/* You can add global styles to this file, and also import other style files */
+@import './assets/style/variables';
+
+@font-face {
+    font-family: 'Poppins';
+    // src: url('assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+    src: url('assets/fonts/Poppins/Poppins-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+/* Importing Bootstrap SCSS file. */
+@import "./node_modules/bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
+
+
+.bannerTop {
+    width: 650px;
+    height: 141px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    
+}
+
+.bannerLeft{
+    width: 300px;
+    height: 100px;
+    border-radius: 15px;
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    // background: var(--Nature-7, #C6D0E0);
+    
+}
+
+.bannerRight{
+    width: 300px;
+    height: 300px;
+    border-radius: 15px;
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    // background: var(--Nature-7, #C6D0E0);
+}
+

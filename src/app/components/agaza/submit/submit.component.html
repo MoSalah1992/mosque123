@@ -1,0 +1,165 @@
+<app-main-banner [imageURL]="'/assets/image/slider/agaza.png'" [imageName]="'Agaza'"></app-main-banner>
+
+<div class="container-fluid d-flex flex-column align-items-center justify-content-center  gap-5 ">
+    <div class="d-flex align-items-center justify-content-center">
+        <div class="agazaTitle">Agaza Request</div>
+    </div>
+
+    <div class="d-flex align-items-center justify-content-center">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="124" height="125" viewBox="0 0 124 125" fill="none">
+                <ellipse cx="62" cy="62.5" rx="62" ry="62.5" fill="#D9D9D9" />
+            </svg>
+        </div>
+    </div>
+
+    <div class="d-flex flex-column align-items-center justify-content-center gap-2 mb-5">
+
+        <div class="submitForm">
+
+            <form style="width: 500px;" (ngSubmit)="submitForm()" [formGroup]="form">
+
+                <!-- Agaza Type -->
+                <div class="d-flex align-items-center justify-content-center">
+                    <div style="text-transform: uppercase;">Agaza Type</div>
+                </div>
+                <div class="m-2">
+                    <select formControlName="agazaType" class=" dropDownList" [(ngModel)]="selectedCategoryId"
+                        (change)="egazaCategoriesChange()">
+                        <option disabled value="" selected>Select Categories</option>
+                        <option *ngFor="let Type of egazaCategories" [value]="Type.id">{{Type.name_En}}</option>
+                    </select>
+                    <!-- <div *ngIf="form.get('agazaType').touched && form.get('agazaType').hasError('required')" class="text-danger">Agaza Type is required</div> -->
+                </div>
+
+                <!-- Agaza SubType -->
+                <div class="m-2">
+                    <select  formControlName="agazaSubType" class="dropDownList"
+                        [(ngModel)]="selectedSubcategoriesId" (change)="egazaSubcategoriesChange()">
+                        <option disabled value="" selected>Select Subcategories</option>
+                        <option *ngFor="let Type of egazaSubcategories" [value]="Type.id">{{Type.name_En}}</option>
+                    </select>
+                    
+                    <!-- <div *ngIf="form.get('agazaSubType').touched && form.get('agazaSubType').hasError('required')" class="text-danger">Agaza SubType is required</div> -->
+                </div>
+
+                <!-- Agaza Sheikh -->
+                <div class="m-2">
+                    <select  formControlName="agazaSheikh" class="dropDownList"
+                        [(ngModel)]="selectedegazaSheikhId">
+                        <option disabled value="" selected>Select Sheikh</option>
+                        <option *ngFor="let Type of egazaSheikh" [value]="Type.id">{{Type.name_En}}</option>
+                    </select>
+                    <!-- <div *ngIf="form.get('agazaSheikh').touched && form.get('agazaSheikh').hasError('required')" class="text-danger">Agaza Sheikh is required</div> -->
+                </div>
+                <div class="d-flex align-items-center justify-content-center">
+                    <div style="text-transform: uppercase;">Your information</div>
+                </div>
+                <!-- User Name -->
+
+                <div class="form-group m-2 form-outline">
+                    <!-- <label for="Name" class="form-label text-danger">User Name<sup>*</sup></label> -->
+
+                    <input formControlName="userName" type="text" class="form-control dropDownList"
+                        placeholder="User Name" required>
+
+                    <div class="invalid-feedback">Please provide a valid city.</div>
+
+                    <!-- <div *ngIf="form.get('userName').touched && form.get('userName').hasError('required')" class="text-danger">User Name is required</div> -->
+                </div>
+                
+
+                <!-- Email -->
+                <div class="form-group m-2">
+                    <!-- <label for="email" class="form-label text-danger">Email<sup>*</sup></label> -->
+
+                    <input formControlName="email" type="email" class="form-control dropDownList"
+                        placeholder="name@example.com">
+                    <!-- <div *ngIf="form.get('email').touched && form.get('email').hasError('required')" class="text-danger">Email is required</div> -->
+                </div>
+
+                <!-- Age -->
+                <div class="form-group m-2">
+                    <!-- <label for="age" class="form-label text-danger">Age<sup>*</sup></label> -->
+
+                    <input formControlName="age" type="text" class="form-control dropDownList" placeholder="User Age">
+                    <!-- <div *ngIf="form.get('age').touched && form.get('age').hasError('required')" class="text-danger">Age is required</div> -->
+                </div>
+
+                <!-- City -->
+                <div class="form-group m-2">
+                    <!-- <label for="city" class="form-label text-danger">City<sup>*</sup></label> -->
+
+                    <input formControlName="city" type="text" class="form-control dropDownList" placeholder="User City">
+                    <!-- <div *ngIf="form.get('city').touched && form.get('city').hasError('required')" class="text-danger">City is required</div> -->
+                </div>
+
+                <!-- Phone -->
+                <div
+                class="form-group d-flex flex-row flex-wrap align-items-center justify-content-center dropDownList">
+
+                    <ngx-intl-tel-input class="" style="" [cssClass]="'custom form-control dropDownList'"
+                        [preferredCountries]="[CountryISO.UnitedStates, CountryISO.UnitedKingdom]"
+                        [enableAutoCountrySelect]="false" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                        [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                        [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.UnitedStates" [maxLength]="'15'"
+                        [phoneValidation]="true" [inputId]="'my-input-id'" name="phone"
+                        formControlName="phone"></ngx-intl-tel-input>
+                </div>
+
+                <!-- Gender -->
+                <div
+                    class="form-group d-flex flex-row flex-wrap align-items-center justify-content-center dropDownList">
+                    <div class="form-check form-check-inline">
+                        <input formControlName="gender" class="form-check-input" type="radio" id="Man" value="Man">
+                        <label class="form-check-label" for="Man">Man</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input formControlName="gender" class="form-check-input" type="radio" id="Woman" value="Woman">
+                        <label class="form-check-label" for="Woman">Woman</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input formControlName="gender" class="form-check-input" type="radio" id="Kids" value="Kids">
+                        <label class="form-check-label" for="Kids">Kids</label>
+                    </div>
+                    <!-- <div *ngIf="form.get('gender').touched && form.get('gender').hasError('required')" class="text-danger">Gender is required</div> -->
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit"
+                    class="btn btn-primary align-items-center justify-content-center dropDownList">Submit</button>
+
+            </form>
+
+            <div class="w-full md:w-30rem m-3">
+                <div *ngIf="errorMessage.isError" class="error-messages">
+                    <div *ngFor="let errorKey of objectKeys(errorMessage)">
+                        <!-- Exclude 'isError' from being displayed -->
+                        <ng-container *ngIf="errorKey !== 'isError'">
+                            <div *ngIf="errorMessage[errorKey].length > 0" class="m-1">
+
+                                <!-- <p-message *ngFor="let error of errorMessage[errorKey]" severity="error"
+                                    [text]="error"></p-message> -->
+                                <div *ngFor="let error of errorMessage[errorKey]" class="alert alert-danger"
+                                    role="alert">
+                                    {{error.error}}
+                                </div>
+                            </div>
+
+                            <!-- <div *ngIf="errorMessage[errorKey].length > 0">
+  
+                                <p-message *ngFor="let error of errorMessage[errorKey]" severity="error"
+                                    [text]="errorKey+' : '+error"></p-message>
+                  
+                            </div> -->
+
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

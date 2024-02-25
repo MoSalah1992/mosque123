@@ -1,0 +1,84 @@
+<app-main-banner [imageURL]="'/assets/image/slider/articles.png'" [imageName]="'News'"></app-main-banner>
+
+<div class="container-fluid mb-4 p-5">
+  <div>
+
+    <div class="row">
+
+      <div *ngFor="let news of pagedNewsList" class="col-md-3 col-sm-12">
+
+        <img class="card-img-top img-fluid"
+          style="max-height: 200px; border-radius: 60px 15px; box-shadow: 0px 4px 10px 0px rgba(21, 120, 212, 0.10);"
+          [src]="news.bannerUrl" />
+
+        <div class="p-3">
+          <div [innerHTML]="news.title_En">
+            <!-- {{news.title_En}} -->
+          </div>
+          <div [innerHTML]="getTruncatedDescription(news.contents_En)">
+            <!-- {{getTruncatedDescription(news.contents_En)}} -->
+          </div>
+          <div class="d-flex flex-wrap justify-content-between">
+
+            <button (click)="fullDescription(news)"  type="button" class="btn btn-seemore btn-primary" data-bs-toggle="modal"
+            data-bs-target="#descriptionModal">See
+              More <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+
+                <path
+                  d="M15.7912 5.818L11.7911 9.59536C11.3694 9.99356 10.6667 9.69834 10.6667 9.1107V7.11173C6.65069 7.13867 4.9565 8.08709 6.08958 11.8715C6.21411 12.2874 5.73275 12.6095 5.39497 12.3529C4.31256 11.5307 3.33333 9.958 3.33333 8.37053C3.33333 4.37228 6.59997 3.57886 10.6667 3.55631V1.55589C10.6667 0.967725 11.3699 0.673447 11.7911 1.07123L15.7912 4.84867C16.0695 5.11153 16.0697 5.55492 15.7912 5.818ZM10.6667 11.4202V13.3333H1.77778V4.44445H3.19211C3.237 4.44442 3.28142 4.43532 3.3227 4.41769C3.36398 4.40006 3.40127 4.37427 3.43233 4.34186C3.84769 3.90942 4.32781 3.56714 4.84939 3.29531C5.15856 3.13417 5.044 2.66667 4.69536 2.66667H1.33333C0.596944 2.66667 0 3.26361 0 4V13.7778C0 14.5142 0.596944 15.1111 1.33333 15.1111H11.1111C11.8475 15.1111 12.4444 14.5142 12.4444 13.7778V11.3109C12.4444 11.0807 12.2168 10.9202 11.9997 10.997C11.6954 11.1046 11.3695 11.1368 11.05 11.0908C10.8481 11.0618 10.6667 11.2162 10.6667 11.4202Z"
+                  fill="#F1F8FF" />
+              </svg> </button>
+
+              <button class="Second-btn">{{ news.author }}</button>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="flex align-items-center justify-content-center  font-bold border-round m-2">
+      <!-- Pagination -->
+      <div class="d-flex justify-content-center align-items-center mb-3">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item" [class.disabled]="currentPage === 1">
+              <a class="page-link" tabindex="-1" aria-disabled="true" (click)="prevPage()">Previous</a>
+            </li>
+            <li class="page-item" *ngFor="let page of pages" [class.active]="page === currentPage">
+              <a class="page-link" (click)="setPage(page)">{{ page }}</a>
+            </li>
+            <li class="page-item" [class.disabled]="currentPage === totalPages">
+              <a class="page-link" (click)="nextPage()">Next</a>
+            </li>
+          </ul>
+        </nav>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--  Modal -->
+
+<div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle" [innerHTML]="fullDescriptionSelected.title_En">
+                  <!-- {{fullDescriptionSelected.title_En}} -->
+                </h5>
+
+            </div>
+            <div class="modal-body" [innerHTML]="fullDescriptionSelected.contents_En">
+                <!-- {{ fullDescriptionSelected.contents_En }} -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                    (click)="handleCloseFatwa(fullDescriptionSelected)">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

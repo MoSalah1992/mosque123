@@ -1,0 +1,88 @@
+<app-main-banner [imageURL]="'/assets/image/slider/audio.png'" [imageName]="'Audio'"></app-main-banner>
+
+<div class="container-fluid p-5">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <!-- Search Box -->
+      <div class="d-flex justify-content-center align-items-center font-bold border-round m-2">
+        <div class="input-group" style="max-width: 500px;">
+          <input class="form-control border-end-0 border rounded-pill" type="search" placeholder="Search" id="">
+          <span class="input-group-append">
+            <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill" type="button">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="d-flex justify-content-center align-items-center font-bold border-round m-2" id="buttonGroup">
+        <button type="button" class="btn rounded-pill m-2"
+                [ngClass]="selectedButton === 'Newest' ? 'btn-primary' : 'btn-secondary'"
+                (click)="selectButton('Newest')">Newest</button>
+        <button type="button" class="btn rounded-pill m-2"
+                [ngClass]="selectedButton === 'Views' ? 'btn-primary' : 'btn-secondary'"
+                (click)="selectButton('Views')">Views</button>
+        <button type="button" class="btn rounded-pill m-2"
+                [ngClass]="selectedButton === 'Popular' ? 'btn-primary' : 'btn-secondary'"
+                (click)="selectButton('Popular')">Popular</button>
+        <button type="button" class="btn rounded-pill m-2"
+                [ngClass]="selectedButton === 'A-Z' ? 'btn-primary' : 'btn-secondary'"
+                (click)="selectButton('A-Z')">A-Z</button>
+      </div>
+      
+
+      <!-- Video Cards -->
+      <div class="d-flex flex-column align-items-start font-bold border-round m-2">
+      
+        
+        <div class="row w-100" *ngFor="let list of AudioList">
+          <div *ngIf="list.audios.length>0" class="d-flex justify-content-between align-items-between  w-100">
+            <h3>{{list.mediaType_En}}</h3>
+            <button type="button" class="btn btn-secondary rounded-pill mb-5 Gray-btn ml-auto" [routerLink]="['/media/audio/filter']" [state]="{mediaType: list.mediaType_En}" >SEE MORE</button>
+          </div>
+          <div  class="col-lg-3 col-md-6 col-sm-12 mb-3" *ngFor="let audio of list.audios">
+            
+            <div class="card" style="background-color: rgba(255, 253, 253, 0.297)">
+                <div class="card-body d-flex flex-column stify-content-between flex-wrap">
+                  <div class="card-body d-flex justify-content-between p-0 ">
+                    <h5 class="card-title">{{ audio.title_En }}</h5>
+                    <img style="width: 32px; height: 32px" src="/assets/image/icon/Audio.png" alt="">
+                    
+                  </div>
+  
+                  <p class="card-text">{{ audio.description_En }}</p>
+                  <!-- Add more details as needed -->
+  
+                  <!-- See More Button -->
+                  <button class="btn btn-primary btn-sm" (click)="playAudio(audio.path)">listen now</button>
+                  <audio #audioPlayer controls style="display: none;">
+                    <source #audioSource src="" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                  </audio>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      
+
+      <!-- Pagination -->
+      <!-- <div class="d-flex justify-content-center align-items-center font-bold border-round m-2">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item" [class.disabled]="currentPage === 1">
+              <a class="page-link" tabindex="-1" aria-disabled="true" (click)="prevPage()">Previous</a>
+            </li>
+            <li class="page-item" *ngFor="let page of pages" [class.active]="page === currentPage">
+              <a class="page-link" (click)="setPage(page)">{{ page }}</a>
+            </li>
+            <li class="page-item" [class.disabled]="currentPage === totalPages">
+              <a class="page-link" (click)="nextPage()">Next</a>
+            </li>
+          </ul>
+        </nav>
+      </div> -->
+    </div>
+  </div>
+</div>

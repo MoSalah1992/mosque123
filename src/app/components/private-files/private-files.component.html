@@ -1,0 +1,21 @@
+<!-- <app-slider></app-slider> -->
+
+<!-- video-page.component.html -->
+
+<app-main-banner [imageURL]="'/assets/image/slider/privateFiles.png'" [imageName]="'Private files'"></app-main-banner>
+
+<div class="container-fluid ">
+    <div class="row no-gutters">
+
+        <div class="d-flex flex-row flex-wrap justify-content-start  align-items-start font-bold border-round p-5 gap-3"style=" height: 153px; ">
+           
+            <div class="card text-white col-lg-3 col-md-4 col-sm-4 mb-3" [ngStyle]="{ 'background-image': 'url(' + file.bannerUrl1 + ')' }"  *ngFor="let file of filesList"  (click)="openPrivateFile(file)">
+                <div class="card-title" style="color: aliceblue;">{{file.title_En}}</div>
+                <div class="card-text" style="color: aliceblue;">{{file.description_En}}</div>
+              </div>
+
+              
+          </div>
+          
+      </div>
+  </div>

@@ -1,0 +1,60 @@
+<app-main-banner [imageURL]="'/assets/image/slider/contact.png'" [imageName]="'Contect us'"></app-main-banner>
+
+<div class="container d-flex flex-column m-5">
+  <div class="  d-flex  justify-content-center">
+    <h2>Conect Us</h2>
+  </div>
+
+
+  <form [formGroup]="userForm" action="" (ngSubmit)="ShowFormData(userForm)">
+
+    <div class="mt-5 mb-5  d-flex align-items-center  flex-column gap-3">
+
+      <input type="text" formControlName="Name" class="form-control w-40 rounded-pill bg-sugar " placeholder="Name">
+      <input type="text" formControlName="email" class="form-control w-40 rounded-pill bg-sugar "
+        placeholder="Email">
+      <input formControlName="City" type="text" class="form-control w-40 rounded-pill bg-sugar " placeholder="City">
+      <div>
+
+        <ngx-intl-tel-input class="custom form-control dropDownList "
+          [preferredCountries]="[CountryISO.UnitedStates, CountryISO.UnitedKingdom]" [enableAutoCountrySelect]="true"
+          [enablePlaceholder]="true" [searchCountryFlag]="true"
+          [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+          (onChange)="changePreferredCountries()" [selectedCountryISO]="CountryISO.UnitedKingdom"
+          [phoneValidation]="true" name="phone" formControlName="phone">
+        </ngx-intl-tel-input>
+      </div>
+
+      <!-- Select Raduis -->
+      <div class="d-flex  justify-content-between  gap-5">
+        <div class="form-check">
+          <input class="form-check-input" formControlName="Gender" type="radio" name="Gender" id="flexRadioDefault1"
+            value="Man">
+          <label class="form-check-label" for="flexRadioDefault1">
+            Man
+          </label>
+        </div>
+        <div class="form-check">
+          <input value="Women" class="form-check-input" formControlName="Gender" type="radio" name="Gender"
+            id="flexRadioDefault1">
+          <label class="form-check-label" for="flexRadioDefault1">
+            Women
+          </label>
+        </div>
+        <div class="form-check">
+          <input value="Kid" class="form-check-input" formControlName="Gender" type="radio" name="Gender"
+            id="flexRadioDefault2">
+          <label class="form-check-label" for="flexRadioDefault2">
+            Kid </label>
+        </div>
+      </div>
+
+
+      <textarea class="form-control w-40" formControlName="textArea" id="exampleFormControlTextarea1"
+        rows="3"></textarea>
+
+      <button class="btn btn-primary btn-handle w-40 rounded-pill m-3">Submit</button>
+    </div>
+  </form>
+
+</div>

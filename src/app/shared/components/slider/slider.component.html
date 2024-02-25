@@ -1,0 +1,44 @@
+<!-- Carousel wrapper -->
+<div id="myCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-carousel-init>
+  <!-- Indicators -->
+  <div class="carousel-indicators">
+    
+    <button *ngFor="let slider of sliderImages; let i = index"
+      type="button"
+      data-bs-target="#myCarousel"
+      [attr.data-bs-slide-to]="i"
+      [ngClass]="{'active': i == 0}" 
+      [attr.aria-current]="i == 0?true:false"
+      [attr.aria-label]="'Slide' + (i + 1)"
+    ></button>
+    
+   
+  </div>
+
+  <!-- Inner -->
+  <div class="carousel-inner">
+    <!-- Single item -->
+
+
+    <div class="carousel-item " *ngFor="let slider of sliderImages; let i = index" [ngClass]="{'active': i == 0}">
+      <img [src]="slider.imageURL" [alt]="slider.name" class="d-block w-100" />
+      <div class="carousel-caption  d-none d-md-block">
+          <h1 class="">{{ slider.name  }}</h1>
+      </div>
+    </div>
+
+
+  </div>
+  <!-- Inner -->
+
+  <!-- Controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<!-- Carousel wrapper -->

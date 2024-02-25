@@ -1,0 +1,28 @@
+<app-main-banner [imageURL]="'/assets/image/slider/liveStream.png'" [imageName]="'Live Stream'"></app-main-banner>
+
+<div class="container-fluid p-5">
+    <div class="d-flex align-items-center justify-content-center ">
+        <h3>Live Now</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="d-flex flex-column align-items-center justify-content-center " style="height: 200px;">
+                <div style="width: 70%;" class="d-flex flex-column align-items-center justify-content-center">
+                    <h4>{{ liveDetails.title_En }}</h4>
+                    <p class="card-text">{{ liveDetails.description_En }} </p>
+                    <div class="row d-flex align-items-center justify-content-center">
+                        <img (click)="openLink(liveDetails.youtubeUrl)" style="width: 140px; height: 30.78px;"
+                            src="/assets/image/images/logos_youtube.png" alt="">
+                        <img (click)="openLink(liveDetails.facebookUrl)" style="width: 48px; height: 48px;"
+                            src="/assets/image/images/logos_facebook.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="d-flex align-items-center justify-content-center p-5 m-5 " [ngStyle]="{'background': 'url(' + liveDetails.bannerUrl + ') rgba(111, 111, 111, 0.2)'}" style="width: 400px;height: 200px;border: solid 1px rgb(111, 111, 111);border-radius: 25px; box-shadow: 0px 0px 10px 0px #a2a2a2;">
+                <!-- <img [src]="liveDetails.bannerUrl?liveDetails.bannerUrl:''" alt=""> -->
+            </div>
+        </div>
+    </div>
+</div>

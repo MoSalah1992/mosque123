@@ -1,0 +1,10 @@
+@import '../assets/style/variables.scss';
+
+.container-fluid{
+    // background-color: $primary-color;
+    // width: 1440px;  background: #E0E6EE;
+    padding: 0px;
+    background: var(--Nature-9, #EEF4FA);
+    // height: 100vh;
+}
+

@@ -1,0 +1,33 @@
+<app-main-banner [imageURL]="'/assets/image/slider/agaza.png'" [imageName]="'Agaza'"></app-main-banner>
+
+<div class="container-fluid d-flex flex-column  ">
+  <div class="d-flex align-items-center justify-content-center">
+    <div class="agazaTitle">Agaza Request</div>
+  </div>
+
+  <div class="d-flex flex-row align-items-center justify-content-center   w-80 p-5">
+    <div class="muiltNews  p-5" *ngFor="let item of AgazaList">
+
+      <div class="" style="width: 18rem;">
+        <img class="card-img-top" style="border-radius: 60px 15px;
+                  box-shadow: 0px 4px 10px 0px rgba(21, 120, 212, 0.10);" [src]="'/assets/image/agaza/'+item.image" />
+        <div class="card-body">
+          <h5 class="card-title ">{{item.name}}</h5>
+          <p class="card-text">{{item.description}}</p>
+          <a href="#" class="btn btn-primary">see More
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M15.7912 5.81803L11.7911 9.5954C11.3694 9.99359 10.6667 9.69837 10.6667 9.11073V7.11176C6.65069 7.1387 4.9565 8.08712 6.08958 11.8716C6.21411 12.2875 5.73275 12.6095 5.39497 12.3529C4.31256 11.5307 3.33333 9.95803 3.33333 8.37056C3.33333 4.37231 6.59997 3.57889 10.6667 3.55634V1.55592C10.6667 0.967756 11.3699 0.673478 11.7911 1.07126L15.7912 4.8487C16.0695 5.11156 16.0697 5.55495 15.7912 5.81803ZM10.6667 11.4203V13.3334H1.77778V4.44448H3.19211C3.237 4.44445 3.28142 4.43535 3.3227 4.41772C3.36398 4.40009 3.40127 4.3743 3.43233 4.34189C3.84769 3.90945 4.32781 3.56717 4.84939 3.29534C5.15856 3.1342 5.044 2.6667 4.69536 2.6667H1.33333C0.596944 2.6667 0 3.26364 0 4.00003V13.7778C0 14.5142 0.596944 15.1111 1.33333 15.1111H11.1111C11.8475 15.1111 12.4444 14.5142 12.4444 13.7778V11.311C12.4444 11.0808 12.2168 10.9203 11.9997 10.997C11.6954 11.1047 11.3695 11.1368 11.05 11.0908C10.8481 11.0618 10.6667 11.2162 10.6667 11.4203Z"
+                fill="#F1F8FF" />
+            </svg>
+          </a>
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+</div>

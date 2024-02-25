@@ -1,0 +1,138 @@
+<div *ngIf="!isLoading" class="container-fluid d-flex flex-column align-items-center justify-content-center">
+    <div class="spinner-grow text-dark" role="status">
+        <!-- <span class="sr-only">Loading...</span> -->
+    </div>
+</div>
+
+<div *ngIf="isLoading">
+
+
+    <app-main-banner [imageURL]="'/assets/image/slider/fatwa.png'" [imageName]="'Fatwa'"></app-main-banner>
+
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="d-flex justify-content-center align-items-center font-bold border-round m-2">
+                    <p class=" btn-orange">Ask Fatwa</p>
+                </div>
+                <!-- Search Box -->
+                <div class="d-flex justify-content-center align-items-center font-bold border-round m-2">
+                    <div class="input-group" style="max-width: 500px;">
+                        <input class="form-control border-end-0 border rounded-pill" [(ngModel)]="searchBox"
+                            type="search" placeholder="Search" id="" (input)="onSearch()">
+                        <span class="input-group-append">
+                            <button class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill"
+                                type="button" (click)="searchClick()">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+
+
+                <!-- Filter Buttons -->
+                <div class="d-flex justify-content-center align-items-center font-bold border-round m-2"
+                    id="buttonGroup">
+                    <button type="button" class="btn rounded-pill m-2"
+                        [ngClass]="selectedButton === 'Newest' ? 'btn-primary' : 'btn-secondary'"
+                        (click)="selectButton('Newest')">Newest</button>
+                    <button type="button" class="btn rounded-pill m-2"
+                        [ngClass]="selectedButton === 'Views' ? 'btn-primary' : 'btn-secondary'"
+                        (click)="selectButton('Views')">Views</button>
+                    <button type="button" class="btn rounded-pill m-2"
+                        [ngClass]="selectedButton === 'Popular' ? 'btn-primary' : 'btn-secondary'"
+                        (click)="selectButton('Popular')">Popular</button>
+                    <button type="button" class="btn rounded-pill m-2"
+                        [ngClass]="selectedButton === 'A-Z' ? 'btn-primary' : 'btn-secondary'"
+                        (click)="selectButton('A-Z')">A-Z</button>
+                </div>
+
+                <!-- <div class="d-flex justify-content-center align-items-center font-bold border-round m-2">
+                <button type="button" class="btn btn-primary rounded-pill m-2 Gray-btn" (click)="newest()">Newest</button>
+                <button type="button" class="btn btn-secondary rounded-pill m-2 Gray-btn">Views</button>
+                <button type="button" class="btn btn-secondary rounded-pill m-2 Gray-btn">Popular</button>
+                <button type="button" class="btn btn-secondary rounded-pill m-2 Gray-btn" (click)="AToZ()">A-Z</button>
+            </div> -->
+
+                <div *ngIf="ArrayOfFormFatwa.length==0" class="d-flex  align-items-center justify-content-center  "
+                    style="height: 500px;padding: 100px;">
+                    <!-- <img class="d-flex   w-2"  src="/assets/image/images/noData.jpg" alt=""   style="width: 50%;"> -->
+                    <p>No Data Found</p>
+                </div>
+
+                <div *ngIf="ArrayOfFormFatwa.length>0"
+                    class="d-flex flex-column align-items-start font-bold border-round m-2">
+
+
+                    <div class="row w-100">
+                        <div class="col-md-4 bg-hand   " *ngFor="let item of ArrayOfFormFatwa">
+                            <div>
+
+                                <div [innerHTML]="item.question_En">
+                                    <!-- {{item.question_En}} -->
+                                </div>
+                                <div>
+                                    <div [innerHTML]="getTruncatedDescription(item.answer_En)">
+                                        <!-- {{getTruncatedDescription(item.answer_En)}} -->
+
+                                    </div> <button (click)="fullDescription(item)" class="span-color"
+                                        data-bs-toggle="modal" data-bs-target="#descriptionModal">See More</button>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <button class="btn-ali">{{item.answerAuthor}} </button>
+
+                                <!-- <p class="like-number">{{item.like}} <fa-icon class="like-icon" [icon]="like"></fa-icon>
+        
+                        </p> -->
+
+                                <p *ngIf="item.views" class="eye-number">{{item.views}} <fa-icon class="eye-icon"
+                                        [icon]="faEye"></fa-icon>
+
+                                </p>
+                            </div>
+
+
+                        </div>
+                      
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--  Modal -->
+
+    <div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title" id="exampleModalLongTitle">
+                        <!-- {{fullDescriptionSelected.question_En}} -->
+                        <div [innerHTML]="fullDescriptionSelected.question_En">
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-body">
+                    <!-- {{ fullDescriptionSelected.answer_En }} -->
+                    <div [innerHTML]="fullDescriptionSelected.answer_En">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                        (click)="handleCloseFatwa(fullDescriptionSelected)">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

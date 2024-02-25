@@ -1,0 +1,98 @@
+<app-main-banner [imageURL]="'/assets/image/slider/events.png'" [imageName]="'Events'"></app-main-banner>
+
+
+<div class="container-fluid   p-5 ">
+    <div class="d-flex flex-column gap-3 align-items-center m-3">
+
+        <div class="d-flex flex-column gap-3 align-items-center justify-content-center   ">
+            <h3>{{eventDetails.title_En}}</h3>
+        </div>
+
+        <div class="d-flex flex-column gap-3 align-items-center justify-content-center   ">
+            <h6>{{eventDetails.eventStartDate | date:'long'}}</h6>
+        </div>
+        <div class="d-flex flex-column gap-3 align-items-center justify-content-center   ">
+            <p>{{eventDetails.description_En}}</p>
+        </div>
+    </div>
+
+
+    <div class=" m-5">
+        <div class=" m-2">
+            <h4>Event Photos</h4>
+        </div>
+        <owl-carousel-o [options]="customOptions">
+            <ng-container *ngFor="let slide of eventDetails.eventPhotos">
+                <ng-template carouselSlide id="{{slide.id}}">
+                    <img  class="carousel-image"  [src]="slide.path" [alt]="slide.id" [title]="slide.title_En">
+                </ng-template>
+            </ng-container>
+        </owl-carousel-o>
+    </div>
+
+    <div class=" m-5">
+        <div class=" m-2">
+            <h4>Event Videos</h4>
+        </div>
+        <owl-carousel-o [options]="customOptions">
+            <ng-container *ngFor="let slide of eventDetails.eventVideos">
+                <ng-template carouselSlide id="{{slide.id}}" >
+                    <!-- <iframe class="card-img-top embed-responsive-item" style="padding: 5px;"
+                       
+                        [src]="sanitize(slide.path)"></iframe>
+                   -->
+                   <div class="card d-flex align-items-center justify-content-center" style="background-color: rgba(255, 253, 253, 0.297) ;margin: 5px;; max-width: 50vw;">
+
+                        <video width="500" height="360"  controls>
+                            <source  [src]="sanitize(slide.path)" type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+        </div>
+
+                        <!-- <img  class="carousel-image" style="padding: 5px;" [src]="slide.path" [alt]="slide.id" [title]="slide.title_En"> -->
+                </ng-template>
+            </ng-container>
+        </owl-carousel-o>
+    </div>
+
+    <div class=" m-5">
+        <div class=" m-2">
+            <h4>Event Audios</h4>
+        </div>
+        <owl-carousel-o [options]="customOptions">
+            <ng-container *ngFor="let slide of eventDetails.eventAudios">
+                <ng-template carouselSlide id="{{slide.id}}">
+                    
+                    <!-- <div class="card d-flex align-items-center justify-content-center" style="background-color: rgba(255, 253, 253, 0.297) ;margin: 5px;height: 200px; max-width: 50vw;">
+                     
+                        <audio width="500" height="360"  controls>
+                            <source  [src]="sanitize(slide.path)" type="video/mp4">
+                            Your browser does not support the video tag.
+                          </audio>
+                      </div> -->
+
+                      <div class="card h-full m-2" style="background-color: rgba(255, 253, 253, 0.297); height: 200px;">
+                        <div class="card-body d-flex flex-column stify-content-between flex-wrap ">
+                            <div class="card-body d-flex justify-content-between p-0 ">
+                                <h5 class="card-title">{{ slide.title_En }}</h5>
+                                <img style="width: 32px; height: 32px" src="/assets/image/icon/Audio.png" alt="">
+                            </div>
+                            <p class="card-text">{{ slide.description_En }}</p>
+                            <!-- Add more details as needed -->
+                            <!-- See More Button -->
+                            <button class="btn btn-primary btn-sm" (click)="playAudio(slide.path)">listen now</button>
+                            <audio #audioPlayer controls style="display: none;">
+                                <source #audioSource src="" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                    
+
+                        <!-- <img  class="carousel-image" style="padding: 5px;" [src]="slide.path" [alt]="slide.id" [title]="slide.title_En"> -->
+                </ng-template>
+                
+            </ng-container>
+        </owl-carousel-o>
+    </div>
+</div>
